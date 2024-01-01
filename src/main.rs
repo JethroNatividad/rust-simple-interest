@@ -28,7 +28,6 @@ mod tests {
         assert_eq!(calculate_simple_interest(100.0, 1.0, 0.5), 100.5);
         assert_eq!(calculate_simple_interest(3000.0, -2.0, 4.0), 3000.0);
         assert_eq!(calculate_simple_interest(2500.0, 3.75, -2.0), 2500.0);
-
     }
 }
 
