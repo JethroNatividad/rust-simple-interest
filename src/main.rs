@@ -4,9 +4,15 @@
 // Process: investment_amount = principal_amount * (1 + (interest_rate_percentage * years_invested))
 // Output: After {years_invested} years at {interest_rate_percentage}%, the investment will be worth ${investment_amount}.
 
+fn round_decimal(number: f64) -> f64 {
+    (number * 1000.0).round() / 1000.0
+}
+
 fn calculate_simple_interest(principal_amount: f64, interest_rate_percentage: f64, years_invested: f64) -> f64 {
-    let interest_rate: f64 = interest_rate_percentage / 100.0;
-    principal_amount * (1.0 + (interest_rate * years_invested))
+    let interest_rate: f64 = interest_rate_percentage.max(0.0) / 100.0;
+    let years: f64 = years_invested.max(0.0);
+    let simple_interest = principal_amount * (1.0 + (interest_rate * years));
+    round_decimal(simple_interest)
 }
 
 #[cfg(test)]
