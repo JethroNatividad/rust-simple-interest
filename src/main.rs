@@ -1,3 +1,6 @@
+use std::io;
+use std::io::Write;
+
 // A program that calculates interest.
 
 // Inputs: principal_amount, interest_rate_percentage, years_invested
@@ -31,7 +34,26 @@ mod tests {
     }
 }
 
-
 fn main() {
-    println!("Hello, world!");
+    print!("Enter the principal amount: ");
+    let mut principal_amount = String::new();
+    io::stdout().flush().unwrap();
+    io::stdin().read_line(&mut principal_amount).expect("Failed to read input");
+    let principal_amount: f64 = principal_amount.trim().parse().expect("Please enter a valid number");
+
+    print!("Enter the rate of interest %: ");
+    let mut interest_rate = String::new();
+    io::stdout().flush().unwrap();
+    io::stdin().read_line(&mut interest_rate).expect("Failed to read input");
+    let interest_rate: f64 = interest_rate.trim().parse().expect("Please enter a valid number");
+
+    print!("Enter the number of years: ");
+    let mut years = String::new();
+    io::stdout().flush().unwrap();
+    io::stdin().read_line(&mut years).expect("Failed to read input");
+    let years: f64 = years.trim().parse().expect("Please enter a valid number");
+
+    let simple_interest: f64 = calculate_simple_interest(principal_amount, interest_rate, years);
+    println!("After {} {} at {}%, the investment will be worth ${}.", years, if years > 1.0 { "years" } else { "year" }, interest_rate, simple_interest);
+    
 }
